@@ -2,8 +2,12 @@
 
 import { useState } from "react";
 
-export default function ChatWidget() {
-  const [messages, setMessages] = useState([]);
+type ChatWidgetProps = {
+  visitorType: "recruiter" | "hiring-manager" | "engineer" | "curious";
+};
+
+export default function ChatWidget({ visitorType }: ChatWidgetProps) {
+  const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
   const [input, setInput] = useState("");
 
   const sendMessage = async () => {
@@ -18,7 +22,7 @@ export default function ChatWidget() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         message: input,
-        visitorType: "general",
+        visitorType,
       }),
     });
 

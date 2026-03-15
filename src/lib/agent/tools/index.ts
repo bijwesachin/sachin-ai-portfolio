@@ -1,7 +1,7 @@
 import { getProfileSummary } from "./profile";
 import { getProjectDetails } from "./projects";
 
-export const tools = [
+export const tools: any[] = [
   {
     type: "function",
     function: {

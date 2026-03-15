@@ -30,8 +30,10 @@ export async function runAgent(message: string, visitorType: string) {
       messages.push(msg);
 
       for (const toolCall of msg.tool_calls) {
-        const functionName = toolCall.function.name;
-        const args = JSON.parse(toolCall.function.arguments);
+        const toolCallData = toolCall as any;
+        const functionName = toolCallData.function?.name ?? toolCallData.name ?? toolCallData.tool;
+        const argumentsText = toolCallData.function?.arguments ?? toolCallData.arguments ?? "{}";
+        const args = JSON.parse(argumentsText);
 
         const result = await toolHandlers[functionName as keyof typeof toolHandlers](args);
 

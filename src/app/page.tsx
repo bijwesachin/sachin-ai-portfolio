@@ -2,13 +2,12 @@
 
 import { useState } from "react";
 import ChatWidget from "@/components/ChatWidget";
-import VisitorTypeToggle, {
-  VisitorType,
-} from "@/components/VisitorTypeToggle";
+import VisitorTypeToggle from "@/components/VisitorTypeToggle";
+
+type VisitorType = "recruiter" | "hiring-manager" | "engineer" | "curious";
 
 export default function Home() {
-  const [visitorType, setVisitorType] =
-    useState<VisitorType>("curious");
+  const [visitorType, setVisitorType] = useState<VisitorType>("curious");
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-6 py-12">
