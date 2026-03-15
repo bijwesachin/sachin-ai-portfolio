@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import { tools, toolHandlers } from "./agent/tools";
+import { tools, toolHandlers } from "./tools";
 import { systemPrompt } from "./prompts";
 
 const openai = new OpenAI({

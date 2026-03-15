@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { runAgent } from "@lib/orchestrator";
+import { runAgent } from "@/lib/agent/orchestrator";
 
 export async function POST(req: NextRequest) {
   try {

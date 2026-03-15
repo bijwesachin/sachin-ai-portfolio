@@ -7,38 +7,22 @@ import VisitorTypeToggle from "@/components/VisitorTypeToggle";
 type VisitorType = "recruiter" | "hiring-manager" | "engineer" | "curious";
 
 export default function Home() {
-  const [visitorType, setVisitorType] = useState<VisitorType>("curious");
-
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-6 py-12">
-      <h1 className="text-3xl font-bold mb-2">
-        Sachin Bijwe
-      </h1>
-
-      <p className="text-gray-600 mb-4">
-        Lead Software Engineer | Distributed Systems | AI-enabled Architectures
+    <main className="flex flex-col items-center justify-center h-screen gap-6">
+      <h1 className="text-4xl font-bold">Sachin Bijwe</h1>
+      <p className="text-lg text-gray-500">
+        Principal Software Engineer
       </p>
 
-      <div className="flex gap-4 mb-6">
-        <a
-          href="https://linkedin.com/in/sachinbijwe"
-          target="_blank"
-          className="underline"
-        >
-          LinkedIn
-        </a>
-        <a
-          href="https://github.com/bijwesachin"
-          target="_blank"
-          className="underline"
-        >
-          GitHub
-        </a>
+      <div className="flex gap-4">
+        <a href="https://linkedin.com" className="underline">LinkedIn</a>
+        <a href="https://github.com/bijwesachin" className="underline">GitHub</a>
+        <a href="/Sachin_Bijwe.pdf" className="underline">Resume</a>
       </div>
 
-      <VisitorTypeToggle onChange={setVisitorType} />
-
-      <ChatWidget visitorType={visitorType} />
+      <div className="mt-10">
+        <p>Ask me anything about my experience ↓</p>
+      </div>
     </main>
   );
 }
