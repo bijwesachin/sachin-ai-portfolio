@@ -1,12 +1,16 @@
 import { getProfileSummary } from "./profile";
 import { getProjectDetails } from "./projects";
+import { generateStarStory } from "./star";
+
+type ToolHandler = (args: any) => Promise<any>;
 
 export const tools: any[] = [
   {
     type: "function",
     function: {
       name: "get_profile_summary",
-      description: "Get professional summary based on visitor type",
+      description:
+        "Get professional summary about Sachin Bijwe tailored for a specific visitor type.",
       parameters: {
         type: "object",
         properties: {
@@ -16,6 +20,7 @@ export const tools: any[] = [
           },
         },
         required: ["visitorType"],
+        additionalProperties: false,
       },
     },
   },
@@ -23,19 +28,43 @@ export const tools: any[] = [
     type: "function",
     function: {
       name: "get_project_details",
-      description: "Get detailed information about a project",
+      description:
+        "Get detailed information about a specific project built by Sachin Bijwe.",
       parameters: {
         type: "object",
         properties: {
-          projectName: { type: "string" },
+          projectName: {
+            type: "string",
+            description: "Name of the project the user is asking about",
+          },
         },
         required: ["projectName"],
+        additionalProperties: false,
       },
     },
   },
+  {
+  type: "function",
+  function: {
+    name: "generate_star_story",
+    description: "Generate a STAR-format story about Sachin's engineering experience",
+    parameters: {
+      type: "object",
+      properties: {
+        topic: {
+          type: "string",
+          description: "Topic such as incident management, leadership, mentoring, architecture"
+        }
+      },
+      required: ["topic"],
+      additionalProperties: false
+    }
+  }
+},
 ];
 
-export const toolHandlers = {
+export const toolHandlers: Record<string, ToolHandler> = {
   get_profile_summary: getProfileSummary,
   get_project_details: getProjectDetails,
+  generate_star_story: generateStarStory,
 };
