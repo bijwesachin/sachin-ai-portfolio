@@ -4,7 +4,7 @@ import { useState } from "react";
 import ChatWidget from "@/components/ChatWidget";
 import VisitorTypeToggle from "@/components/VisitorTypeToggle";
 
-type VisitorType = "recruiter" | "hiring-manager" | "engineer" | "curious";
+type VisitorType = "recruiter" | "hiring_manager" | "engineer" | "curious";
 
 export default function Home() {
 

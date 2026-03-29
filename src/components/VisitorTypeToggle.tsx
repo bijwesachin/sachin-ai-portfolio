@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-type VisitorType = "recruiter" | "hiring-manager" | "engineer" | "curious";
+type VisitorType = "recruiter" | "hiring_manager" | "engineer" | "curious";
 
 type Props = {
   visitorType: VisitorType;
@@ -11,7 +11,7 @@ type Props = {
 
 const VISITORS: VisitorType[] = [
   "recruiter",
-  "hiring-manager",
+  "hiring_manager",
   "engineer",
   "curious",
 ];
