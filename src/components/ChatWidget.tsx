@@ -3,6 +3,13 @@
 import { useState, useRef, useEffect } from "react";
 import MessageBubble from "./MessageBubble";
 
+const SUGGESTED_PROMPTS = [
+  "Tell me about Sachin",
+  "Explain his AI portfolio",
+  "Describe his system design experience",
+  "What projects has he built?",
+];
+
 type VisitorType =
   | "recruiter"
   | "hiring_manager"
@@ -36,6 +43,11 @@ export default function ChatWidget({ visitorType }: Props) {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  const sendSuggestedPrompt = (text: string) => {
+  setInput(text);
+  setTimeout(() => sendMessage(), 100);
+};
+
   const sendMessage = async () => {
     if (!input.trim() || loading) return;
 
@@ -59,6 +71,7 @@ export default function ChatWidget({ visitorType }: Props) {
         body: JSON.stringify({
           message: text,
           visitorType,
+          history: messages,
         }),
       });
 
@@ -103,12 +116,25 @@ export default function ChatWidget({ visitorType }: Props) {
         ))}
 
         {loading && (
-          <div className="text-sm text-gray-400">
-            AI is thinking...
+          <div className="text-sm text-gray-400 animate-pulse">
+            AI is typing...
           </div>
         )}
 
         <div ref={endRef} />
+      </div>
+
+      {/* Suggested prompts */}
+      <div className="flex flex-wrap gap-2 mb-3">
+        {SUGGESTED_PROMPTS.map((prompt) => (
+          <button
+            key={prompt}
+            onClick={() => sendSuggestedPrompt(prompt)}
+            className="text-xs border px-3 py-1 rounded-full hover:bg-gray-100 transition"
+          >
+            {prompt}
+          </button>
+        ))}
       </div>
 
       {/* Input */}

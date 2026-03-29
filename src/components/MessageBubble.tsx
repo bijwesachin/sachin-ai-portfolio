@@ -1,3 +1,5 @@
+import TypingMessage from "./TypingMessage";
+
 type Props = {
   role: "user" | "assistant";
   content: string;
@@ -15,7 +17,7 @@ export default function MessageBubble({ role, content }: Props) {
             : "bg-gray-100 text-gray-800 border"
         }`}
       >
-        {content}
+        {isUser ? content : <TypingMessage text={content} />}
       </div>
     </div>
   );

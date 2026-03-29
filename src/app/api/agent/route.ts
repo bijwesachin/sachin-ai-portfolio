@@ -2,9 +2,9 @@ import { runAgent } from "@/lib/agent/orchestrator";
 
 export async function POST(req: Request) {
   try {
-    const { message, visitorType } = await req.json();
+    const { message, visitorType, history } = await req.json();
 
-    const reply = await runAgent(message, visitorType);
+    const reply = await runAgent(message, visitorType, history);
 
     return Response.json({ reply });
   } catch (error) {

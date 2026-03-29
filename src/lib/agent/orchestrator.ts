@@ -6,16 +6,16 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
 });
 
-export async function runAgent(message: string, visitorType: string) {
+export async function runAgent(   message: string,   visitorType: string,   history: any[] = [] ) {
 
   const messages: any[] = [
-    {
-      role: "system",
-      content: `${systemPrompt}\n\nVisitor type: ${visitorType}`,
-    },
+    { role: "system", content: systemPrompt },
+
+    ...history,
+
     {
       role: "user",
-      content: message,
+      content: `Visitor type: ${visitorType}\n\nMessage: ${message}`,
     },
   ];
 
